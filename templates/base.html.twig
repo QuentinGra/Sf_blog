@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>
 			{% block title %}
 				| My first Symfony App
@@ -17,6 +18,9 @@
 		{% endblock %}
 	</head>
 	<body>
-		{% block body %}{% endblock %}
+		{% include 'Layout/_header.html.twig' %}
+		<main>
+			{% block body %}{% endblock %}
+		</main>
 	</body>
 </html>
