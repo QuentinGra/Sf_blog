@@ -1,0 +1,33 @@
+<header class="sticky-top">
+	<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">My First Symfony App</a>
+			<button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
+			<div class="collapse navbar-collapse" id="collapsibleNavId">
+				<ul class="navbar-nav me-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="#" aria-current="page">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Article</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav ms-auto">
+					{% if app.user %}
+						<li class="nav-item">
+							<a href="/logout" class="btn btn-danger">Déconnexion</a>
+						</li>
+					{% else %}
+						<li class="nav-item me-2">
+							<a href="#" class="btn btn-outline-secondary text-light">Inscription</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('app.login') }}" class="btn btn-secondary">Connexion</a>
+						</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+</header>
