@@ -17,8 +17,8 @@
 							<p class="card-text">{{ user.email }}</p>
 							<p class="card-text">{{ user.roles|join(', ') }}</p>
 							<div class="d-flex flex-wrap justify-content-between mt-3">
-								<a href="#" class="btn btn-warning">Modifier</a>
-								<a href="#" class="btn btn-danger">Supprimer</a>
+								<a href="{{ path('admin.users.update', {id: user.id}) }}" class="btn btn-warning">Modifier</a>
+								{% include 'Backend/Users/_deleteForm.html.twig' %}
 							</div>
 						</div>
 					</div>
