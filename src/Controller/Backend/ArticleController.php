@@ -37,6 +37,10 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
+
+            $article->setUser($user);
+
             $this->em->persist($article);
             $this->em->flush();
 
@@ -59,7 +63,7 @@ class ArticleController extends AbstractController
             return $this->redirectToRoute('admin.articles.index');
         }
 
-        $form = $this->createForm(ArticleType::class, $article, ['isAdmin' => true]);
+        $form = $this->createForm(ArticleType::class, $article, ['isEdit' => true]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -85,7 +89,7 @@ class ArticleController extends AbstractController
             return $this->redirectToRoute('admin.articles.index');
         }
 
-        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('token'))) {
+        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('token'))) {
             $this->em->remove($article);
             $this->em->flush();
 
