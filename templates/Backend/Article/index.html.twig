@@ -18,7 +18,12 @@
 							<em class="text-muted">{{ article.slug }}</em>
 							<p class="card-text">{{ article.createdAt|format_datetime('full', 'none') }}</p>
 							<p class="card-text">{{ (article.content|slice(0, 150) ~ '...')|sanitize_html }}</p>
-							<p class="card-text fw-bold text-{{ article.enable ? 'success' : 'danger' }}">{{ article.enable ? 'Actif' : 'Inactif'}}</p>
+
+							<div class="form-check form-switch">
+								<input class="form-check-input" type="checkbox" id="article-switch-{{ article.id }}" {{ article.enable ? 'checked' }} data-switch-article-id='{{ article.id }}'/>
+								<label class="form-check-label fw-bold text-{{ article.enable ? 'success' : 'danger'}}" for="article-switch-{{ article.id }}">{{ article.enable ? 'Actif' : 'Inactif'}}</label>
+							</div>
+
 							<div class="d-flex flex-wrap justify-content-between mt-3">
 								<a href="{{ path('admin.articles.update', {id: article.id}) }}" class="btn btn-warning">Modifier</a>
 								{% include 'Backend/Article/_deleteForm.html.twig' %}
