@@ -40,7 +40,6 @@ class Article
     private ?bool $enable = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
