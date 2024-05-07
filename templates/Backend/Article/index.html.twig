@@ -19,6 +19,10 @@
 							<p class="card-text">{{ article.createdAt|format_datetime('full', 'none') }}</p>
 							<p class="card-text">{{ article.content|slice(0, 150) ~ '...' }}</p>
 							<p class="card-text fw-bold text-{{ article.enable ? 'success' : 'danger' }}">{{ article.enable ? 'Actif' : 'Inactif'}}</p>
+							<div class="d-flex flex-wrap justify-content-between mt-3">
+								<a href="{{ path('admin.articles.update', {id: article.id}) }}" class="btn btn-warning">Modifier</a>
+								{% include 'Backend/Article/_deleteForm.html.twig' %}
+							</div>
 						</div>
 					</div>
 				</div>
