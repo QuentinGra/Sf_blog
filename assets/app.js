@@ -7,4 +7,6 @@
  */
 import "./styles/app.scss";
 
+import './js/switchArticle';
+
 require('bootstrap');
