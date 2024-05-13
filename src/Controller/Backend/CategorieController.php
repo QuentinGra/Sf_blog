@@ -7,6 +7,7 @@ use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -23,7 +24,7 @@ class CategorieController extends AbstractController
     public function index(CategorieRepository $categorieRepo): Response
     {
         return $this->render('Backend/Categorie/index.html.twig', [
-            'categories' => $categorieRepo->findAll(),
+            'categories' => $categorieRepo->findAllOrderByName(),
         ]);
     }
 
@@ -50,7 +51,7 @@ class CategorieController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: '.update', methods: ['GET', 'POST'])]
-    public function update(?Categorie $categorie, Request $request): Response
+    public function update(?Categorie $categorie, Request $request): Response|RedirectResponse
     {
         if (!$categorie) {
             $this->addFlash('error', 'Categorie non trouvé');
@@ -65,7 +66,7 @@ class CategorieController extends AbstractController
             $this->em->persist($categorie);
             $this->em->flush();
 
-            $this->addFlash('success', 'Categorie crée avec succès');
+            $this->addFlash('success', 'Categorie modifié avec succès');
 
             return $this->redirectToRoute('admin.categories.index');
         }
@@ -73,5 +74,26 @@ class CategorieController extends AbstractController
         return $this->render('Backend/Categorie/update.html.twig', [
             'form' => $form,
         ]);
+    }
+
+    #[Route('/{id}/delete', name: '.delete', methods: ['POST'])]
+    public function delete(?Categorie $categorie, Request $request): Response|RedirectResponse
+    {
+        if (!$categorie) {
+            $this->addFlash('error', 'Catégorie non trouvé');
+
+            return $this->redirectToRoute('admin.categories.index');
+        }
+
+        if ($this->isCsrfTokenValid('delete' . $categorie->getId(), $request->request->get('token'))) {
+            $this->em->remove($categorie);
+            $this->em->flush();
+
+            $this->addFlash('success', 'Catégorie supprimé avec succès');
+        } else {
+            $this->addFlash('error', 'Token CSRF invalide');
+        }
+
+        return $this->redirectToRoute('admin.categories.index');
     }
 }
