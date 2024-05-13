@@ -90,7 +90,7 @@ class ArticleController extends AbstractController
             return $this->redirectToRoute('admin.articles.index');
         }
 
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('token'))) {
+        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('token'))) {
             $this->em->remove($article);
             $this->em->flush();
 
@@ -106,7 +106,7 @@ class ArticleController extends AbstractController
     public function switch(?Article $article): JsonResponse
     {
         if (!$article) {
-            return new JsonResponse([
+            return $this->json([
                 'status' => 'error',
                 'message' => 'Article not found',
             ], 404);
@@ -117,7 +117,7 @@ class ArticleController extends AbstractController
         $this->em->persist($article);
         $this->em->flush();
 
-        return new JsonResponse([
+        return $this->json([
             'status' => 'ok',
             'message' => 'Visibility changed',
             'enable' => $article->isEnable(),
