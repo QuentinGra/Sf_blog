@@ -12,7 +12,7 @@
 		<div class="row mt-2 gy-4">
 			{% for categorie in categories %}
 				<div class="col-md-3">
-					<div class="card">
+					<div class="card border-{{ categorie.enable ? 'success' : 'danger' }}">
 						<div class="card-body">
 							<h2 class="card-title">{{ categorie.name }}</h2>
 							<div class="form-check form-switch">
@@ -20,7 +20,8 @@
 								<label class="form-check-label" for="switch-categorie-{{ categorie.id }}">{{ categorie.enable ? 'Actif' : 'Inactif' }}</label>
 							</div>
 							<div class="mt-2 d-flex justify-content-between flex-wrap">
-								<a href="#" class="btn btn-warning">Modifier</a>
+								<a href="{{ path('admin.categories.update', {id: categorie.id}) }}" class="btn btn-warning">Modifier</a>
+								{% include 'Backend/Categorie/_deleteForm.html.twig' %}
 							</div>
 						</div>
 					</div>
