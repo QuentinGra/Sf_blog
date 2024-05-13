@@ -90,7 +90,7 @@ class ArticleController extends AbstractController
             return $this->redirectToRoute('admin.articles.index');
         }
 
-        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('token'))) {
+        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('token'))) {
             $this->em->remove($article);
             $this->em->flush();
 
