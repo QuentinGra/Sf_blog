@@ -1,5 +1,5 @@
 <header class="sticky-top">
-	<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+	<nav class="navbar navbar-expand-sm navbar-dark bg-secondary">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">My First Symfony App</a>
 			<button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
@@ -17,8 +17,25 @@
 				</ul>
 				<ul class="navbar-nav ms-auto">
 					{% if app.user %}
+						{% if is_granted('ROLE_ADMIN') %}
+							<li class="nav-item me-2">
+								<div class="dropdown">
+									<button class="btn btn-primary text-light dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Admin
+									</button>
+									<div class="dropdown-menu" aria-labelledby="triggerId">
+										<a class="dropdown-item" href="{{ path('admin.users.index') }}">Users</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="{{ path('admin.articles.index') }}">Articles</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="{{ path('admin.categories.index') }}">Categories</a>
+									</div>
+								</div>
+
+							</li>
+						{% endif %}
 						<li class="nav-item">
-							<a href="/logout" class="btn btn-danger">Déconnexion</a>
+							<a href="/logout" class="btn btn-danger text-light">Déconnexion</a>
 						</li>
 					{% else %}
 						<li class="nav-item me-2">
