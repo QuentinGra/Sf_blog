@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Homepage
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<section class="banner">
+		<div class="banner-header">
+			<h1 class="banner-header-title">Bienvenue sur le site développé en Symfony</h1>
+		</div>
+	</section>
+	<section class="container mt-2">
+		<h1 class="text-center">Nos derniers articles</h1>
+		<a href="#" class="btn btn-primary">Voir les articles</a>
+		<div class="blog-list mt-4">
+			{% for article in articles %}
+				{% include 'Components/_articleCard.html.twig' %}
+			{% endfor %}
+		</div>
+	</section>
+{% endblock %}
