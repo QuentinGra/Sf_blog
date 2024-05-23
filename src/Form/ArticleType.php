@@ -3,7 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\Categorie;
 use App\Entity\User;
+use App\Repository\CategorieRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -11,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ArticleType extends AbstractType
 {
@@ -22,6 +26,20 @@ class ArticleType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Titre de votre article',
                 ],
+            ])
+            ->add('categories', EntityType::class, [
+                'class' => Categorie::class,
+                'choice_label' => 'name',
+                'expanded' => false,
+                'multiple' => true,
+                'by_reference' => false,
+                'autocomplete' => true,
+                'query_builder' => function (CategorieRepository $cr): QueryBuilder {
+                    return $cr->createQueryBuilder('c')
+                        ->andWhere('c.enable = :enable')
+                        ->setParameter('enable', true)
+                        ->orderBy('c.name', 'ASC');
+                },
             ]);
 
         if ($options['isEdit']) {
@@ -41,6 +59,14 @@ class ArticleType extends AbstractType
                 'rows' => 5,
             ],
         ])
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Image',
+                'required' => false,
+                'allow_delete' => true,
+                'delete_label' => 'Supprimer l\'image',
+                'download_uri' => false,
+                'image_uri' => true,
+            ])
             ->add('enable', CheckboxType::class, [
                 'label' => 'Actif',
                 'required' => false,

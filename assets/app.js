@@ -1,4 +1,5 @@
-// import './bootstrap.js';
+import './bootstrap.js';
+// 
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -6,7 +7,7 @@
  * which should already be in your base.html.twig.
  */
 import "./styles/app.scss";
-
 import './js/switchArticle';
+import './js/switchCategorie';
 
 require('bootstrap');

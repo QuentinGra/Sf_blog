@@ -85,21 +85,6 @@
             "./config/packages/stof_doctrine_extensions.yaml"
         ]
     },
-    "symfony/asset-mapper": {
-        "version": "7.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "6.4",
-            "ref": "6c28c471640cc2c6e60812ebcb961c526ef8997f"
-        },
-        "files": [
-            "./assets/app.js",
-            "./assets/styles/app.css",
-            "./config/packages/asset_mapper.yaml",
-            "./importmap.php"
-        ]
-    },
     "symfony/console": {
         "version": "7.0",
         "recipe": {
@@ -254,7 +239,7 @@
         ]
     },
     "symfony/stimulus-bundle": {
-        "version": "2.16",
+        "version": "2.17",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -293,8 +278,20 @@
             "./templates/base.html.twig"
         ]
     },
+    "symfony/ux-autocomplete": {
+        "version": "2.17",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.6",
+            "ref": "07d9602b7231ba355f484305d6cea58310c01741"
+        },
+        "files": [
+            "./config/routes/ux_autocomplete.yaml"
+        ]
+    },
     "symfony/ux-turbo": {
-        "version": "v2.16.0"
+        "version": "v2.17.0"
     },
     "symfony/validator": {
         "version": "7.0",
@@ -339,5 +336,17 @@
     },
     "twig/extra-bundle": {
         "version": "v3.9.3"
+    },
+    "vich/uploader-bundle": {
+        "version": "2.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.13",
+            "ref": "1b3064c2f6b255c2bc2f56461aaeb76b11e07e36"
+        },
+        "files": [
+            "./config/packages/vich_uploader.yaml"
+        ]
     }
 }

@@ -13,6 +13,11 @@
 			{% for article in articles %}
 				<div class="col-md-4">
 					<div class="card border-{{ article.enable ? 'success' : 'danger' }}">
+						{% if article.imageName %}
+							<img src="{{ vich_uploader_asset(article) }}" alt="{{ article.title }}" class="card-img" loading="lazy">
+						{% else %}
+							<img src="https://picsum.photos/200/100" alt="" class="card-img">
+						{% endif %}
 						<h2 class="card-header fs-4">{{ article.title }}</h2>
 						<div class="card-body">
 							<em class="text-muted">{{ article.slug }}</em>
