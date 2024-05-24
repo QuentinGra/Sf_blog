@@ -5,8 +5,10 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
+/public/images
 /var/
 /vendor/
+/src/DataFixtures/images
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###

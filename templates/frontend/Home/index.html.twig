@@ -13,7 +13,7 @@
 	</section>
 	<section class="container mt-2">
 		<h1 class="text-center">Nos derniers articles</h1>
-		<a href="#" class="btn btn-primary">Voir les articles</a>
+		<a href="{{ path('app.articles.index') }}" class="btn btn-primary">Voir les articles</a>
 		<div class="blog-list mt-4">
 			{% for article in articles %}
 				{% include 'Components/_articleCard.html.twig' %}

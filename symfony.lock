@@ -59,6 +59,9 @@
             "./.php-cs-fixer.dist.php"
         ]
     },
+    "knplabs/knp-gaufrette-bundle": {
+        "version": "v0.9.0"
+    },
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {

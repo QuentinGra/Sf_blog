@@ -9,7 +9,7 @@
 						<a class="nav-link {{ app.request.get('_route') == 'app.home' ? 'text-primary'}}" href="{{ path('app.home') }}" aria-current="page">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link {{ app.request.get('_route') == 'admin.articles.index' ? 'text-primary'}}" href="{{ path('admin.articles.index')}}">Article</a>
+						<a class="nav-link {{ app.request.get('_route') == 'app.articles.index' ? 'text-primary'}}" href="{{ path('app.articles.index')}}">Article</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('admin.categories.index')}}">Categorie</a>

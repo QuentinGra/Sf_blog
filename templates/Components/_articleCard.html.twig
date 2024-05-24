@@ -13,7 +13,7 @@
 			{{ article.createdAt|format_datetime('full', 'none') }}
 		</p>
 		<h2 class="blog-card-content-title">{{ article.title }}</h2>
-		<p class="blog-card-content-description">{{ article.content|slice(0,150) ~ '...' }}</p>
+		<p class="blog-card-content-description">{{ article.content|striptags|slice(0,150) ~ '...' }}</p>
 		{% for categorie in article.categories %}
 			<em class="text-muted">{{ categorie.name }}</em>
 		{% endfor %}
