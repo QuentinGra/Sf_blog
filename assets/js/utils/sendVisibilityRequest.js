@@ -3,7 +3,7 @@ export async function sendVisibilityRequest(url, input) {
     const response = await fetch(url);
     const data = await response.json();
     if (response.ok) {
-        const card = input.closest('.card');
+        const card = input.closest('.blog-card');
         const label = input.nextElementSibling;
 
         if (data.enable) {
