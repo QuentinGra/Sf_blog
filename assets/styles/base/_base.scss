@@ -1,0 +1,22 @@
+html,
+body {
+  scroll-behavior: smooth;
+  color: $text-color;
+}
+
+body {
+  font-family: $font-primary;
+}
+
+img,
+figure,
+video {
+  max-width: 100%;
+  object-fit: cover;
+  display: inline-block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
