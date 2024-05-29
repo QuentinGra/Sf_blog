@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -36,30 +37,36 @@ class Article
         max: 255
     )]
     #[Assert\NotBlank]
+    #[Groups(['article:read'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
     #[Gedmo\Slug(fields: ['title'])]
+    #[Groups(['article:read'])]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
+    #[Groups(['article:read'])]
     private ?string $content = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['article:read'])]
     private ?User $user = null;
 
     /**
      * @var Collection<int, Categorie>
      */
     #[ORM\ManyToMany(targetEntity: Categorie::class, mappedBy: 'articles')]
+    #[Groups(['article:read'])]
     private Collection $categories;
 
     #[Vich\UploadableField(mapping: 'articles', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['article:read'])]
     private ?string $imageName = null;
 
     public function __construct()

@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
@@ -33,6 +34,7 @@ class Categorie
         maxMessage: 'Le name doit faire moins de {{ limit }} caractères',
     )]
     #[Assert\NotBlank]
+    #[Groups(['article:read'])]
     private ?string $name = null;
 
     /**
